@@ -294,6 +294,8 @@ function p2_init()
 
 // }}}
 
+header("Referrer-Policy: no-referrer");
+
 /*
  * Local Variables:
  * mode: php
