@@ -1,0 +1,311 @@
+Index: lib/ShowThreadPc.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>Shift_JIS
+===================================================================
+--- lib/ShowThreadPc.php	(revision c2a5fa8f6b851be72ac0b69f7fac006b0d347bb3)
++++ lib/ShowThreadPc.php	(date 1593575913021)
+@@ -1568,7 +1568,9 @@
+         $backlinks = $this->getQuotebacksJson();
+         $colors = array();
+         $backlink_colors = join(',',
+-            array_map(create_function('$x', 'return "\'{$x}\'";'),
++            array_map(function ($x) {
++                return "\'{$x}\'";
++            },
+                 explode(',', $_conf['backlink_coloring_track_colors']))
+         );
+         $prefix = $this->_matome ? "t{$this->_matome}" : '';
+@@ -1642,8 +1644,11 @@
+         }
+         $hissiCount = $_conf['coloredid.rate.hissi.times'];
+         $mark_colors = join(',',
+-            array_map(create_function('$x', 'return "\'{$x}\'";'),
+-                explode(',', $_conf['coloredid.marking.colors']))
++            array_map(function ($x) {
++                return "\'{$x}\'";
++            },
++                explode(',', $_conf['coloredid.marking.colors'])
++            )
+         );
+         $fontstyle_bold = empty($STYLE['fontstyle_bold']) ? 'normal' : $STYLE['fontstyle_bold'];
+         $fontweight_bold = empty($STYLE['fontweight_bold']) ? 'normal' : $STYLE['fontweight_bold'];
+Index: lib/emoji.inc.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>Shift_JIS
+===================================================================
+--- lib/emoji.inc.php	(revision c2a5fa8f6b851be72ac0b69f7fac006b0d347bb3)
++++ lib/emoji.inc.php	(date 1593576040439)
+@@ -43,7 +43,7 @@
+     );
+ 
+     if (!$mobile) {
+-        $mobile = Net_UserAgent_Mobile::singleton();
++        $mobile = (new Net_UserAgent_Mobile)->singleton();
+         $cache = true;
+     }
+ 
+Index: lib/expack/ExpackLoader.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>Shift_JIS
+===================================================================
+--- lib/expack/ExpackLoader.php	(revision c2a5fa8f6b851be72ac0b69f7fac006b0d347bb3)
++++ lib/expack/ExpackLoader.php	(date 1593576040456)
+@@ -218,7 +218,7 @@
+         if ($_conf['iphone']) {
+             $aShowThread->aas_rotate = '&#x21BB;';
+         } elseif ($_conf['ktai']) {
+-            $mobile = Net_UserAgent_Mobile::singleton();
++            $mobile = (new Net_UserAgent_Mobile)->singleton();
+             /**
+              * @link http://www.nttdocomo.co.jp/service/imode/make/content/pictograph/
+              * @link http://www.au.kddi.com/ezfactory/tec/spec/3.html
+Index: lib/post_form_options.inc.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>Shift_JIS
+===================================================================
+--- lib/post_form_options.inc.php	(revision c2a5fa8f6b851be72ac0b69f7fac006b0d347bb3)
++++ lib/post_form_options.inc.php	(date 1593576018427)
+@@ -133,7 +133,7 @@
+ // {{{ textareaの属性
+ 
+ // 参考 クラシック COLS='60' ROWS='8'
+-$mobile = Net_UserAgent_Mobile::singleton();
++$mobile = (new Net_UserAgent_Mobile)->singleton();
+ $wrap_at = ''; // wrap属性はW3C HTML 4.01仕様に存在しない
+ $name_size_at = '';
+ $mail_size_at = '';
+Index: lib/Session.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>Shift_JIS
+===================================================================
+--- lib/Session.php	(revision c2a5fa8f6b851be72ac0b69f7fac006b0d347bb3)
++++ lib/Session.php	(date 1593576040434)
+@@ -256,7 +256,7 @@
+     {
+         // {{{ docomoはUTN時にUA後部が変わるので機種名で検証する
+ 
+-        $mobile = Net_UserAgent_Mobile::singleton();
++        $mobile = (new Net_UserAgent_Mobile)->singleton();
+         if ($mobile->isDoCoMo()) {
+             $mobile_b = Net_UserAgent_Mobile::factory($_SESSION[$this->sess_array]['ua']);
+             if ($mobile_b->getModel() == $mobile->getModel()) {
+Index: rep2/read_copy_k.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>Shift_JIS
+===================================================================
+--- rep2/read_copy_k.php	(revision c2a5fa8f6b851be72ac0b69f7fac006b0d347bb3)
++++ rep2/read_copy_k.php	(date 1593576040461)
+@@ -102,7 +102,7 @@
+ javascript:(function(){for (var j=0;j<document.forms.length;j++){for (var i=0;i<document.forms[j].elements.length;i++) {k=document.forms[j].elements[i];if(k.type=="textarea"){k.rows=10;k.cols=34;}}}})(); 
+ */
+ $kyopon_size = '';
+-$mobile = Net_UserAgent_Mobile::singleton();
++$mobile = (new Net_UserAgent_Mobile)->singleton();
+ if ($mobile->isAirHPhone()) {
+     $kyopon_size = ' rows="10" cols="34"';
+ }
+Index: rep2/ic2.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>Shift_JIS
+===================================================================
+--- rep2/ic2.php	(revision c2a5fa8f6b851be72ac0b69f7fac006b0d347bb3)
++++ rep2/ic2.php	(date 1593576040423)
+@@ -722,7 +722,7 @@
+                 'q' => $ini["Thumb{$thumb}"]['quality'],
+                 'r'  => '0',
+             );
+-            $mobile = Net_UserAgent_Mobile::singleton();
++            $mobile = (new Net_UserAgent_Mobile)->singleton();
+             $qa = 'size=3 maxlength=3';
+             if ($mobile->isDoCoMo()) {
+                 $qa .= ' istyle=4';
+Index: lib/StrCtl.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>Shift_JIS
+===================================================================
+--- lib/StrCtl.php	(revision c2a5fa8f6b851be72ac0b69f7fac006b0d347bb3)
++++ lib/StrCtl.php	(date 1593574844617)
+@@ -230,7 +230,7 @@
+         //$kigou['han'] = array('`',  '\(', '\)', '\?', '#',  '%',  '@',  '&gt;', '\!', '\*', '\+', '&amp;');
+ 
+         if ($no_escape) {
+-            $kigou['han'] = array_map(create_function('$str', 'return ltrim($str, "\\\\");'), $kigou['han']);
++            $kigou['han'] = array_map(function($str){return ltrim($str, "\\\\");}, $kigou['han']);
+             /*
+             foreach ($kigou['han'] as $k => $v) {
+                 $kigou['han'][$k] = ltrim($v, '\\');
+Index: rep2/iv2.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>Shift_JIS
+===================================================================
+--- rep2/iv2.php	(revision c2a5fa8f6b851be72ac0b69f7fac006b0d347bb3)
++++ rep2/iv2.php	(date 1593576040450)
+@@ -1054,7 +1054,7 @@
+     $flexy->setData('limelight_header', $limelight_header);
+     $flexy->output();
+ } elseif ($list_template == 'iv2i.tpl.html') {
+-    $mobile = Net_UserAgent_Mobile::singleton();
++    $mobile = (new Net_UserAgent_Mobile)->singleton();
+     $elements = $flexy->getElements();
+     if ($mobile->isDoCoMo()) {
+         $elements['page']->setAttributes('istyle="4"');
+Index: lib/login_first.inc.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>Shift_JIS
+===================================================================
+--- lib/login_first.inc.php	(revision c2a5fa8f6b851be72ac0b69f7fac006b0d347bb3)
++++ lib/login_first.inc.php	(date 1593576040427)
+@@ -57,7 +57,7 @@
+     //==============================================
+     // 補助認証
+     //==============================================
+-    $mobile = Net_UserAgent_Mobile::singleton();
++    $mobile = (new Net_UserAgent_Mobile)->singleton();
+ 
+     $keep_login_checked = ' checked';
+     if (isset($_POST['submit_new']) || isset($_POST['submit_member'])) {
+Index: lib/FileCtl.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>Shift_JIS
+===================================================================
+--- lib/FileCtl.php	(revision c2a5fa8f6b851be72ac0b69f7fac006b0d347bb3)
++++ lib/FileCtl.php	(date 1593575939887)
+@@ -335,7 +335,9 @@
+         if (($flags & FILE_IGNORE_NEW_LINES) && $lines &&
+             strlen($lines[0]) && substr($lines[0], -1) == "\r")
+         {
+-            $lines = array_map(create_function('$l', 'return rtrim($l, "\\r");'), $lines);
++            $lines = array_map(function ($l) {
++                return rtrim($l, "\\r");
++            }, $lines);
+             if ($flags & FILE_SKIP_EMPTY_LINES) {
+                 $lines = array_filter($lines, 'strlen');
+             }
+Index: lib/expack/tgrep/view_x.inc.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>Shift_JIS
+===================================================================
+--- lib/expack/tgrep/view_x.inc.php	(revision c2a5fa8f6b851be72ac0b69f7fac006b0d347bb3)
++++ lib/expack/tgrep/view_x.inc.php	(date 1593575749629)
+@@ -67,13 +67,13 @@
+         }
+ 
+         usort($boards,
+-              create_function('$a, $b',
+-                              'if (($c = $b->hits - $a->hits) != 0) {
+-                                   return $c;
+-                               }
+-                               return strcasecmp($a->name, $b->name);'
+-                               )
+-              );
++            function ($a, $b) {
++                if (($c = $b->hits - $a->hits) != 0) {
++                    return $c;
++                }
++                return strcasecmp($a->name, $b->name);
++            }
++        );
+ 
+         foreach ($boards as $board) {
+             printf('<li><a href="%s&amp;ib=%d&amp;S=%s&amp;B=%s">%s' .
+Index: lib/UA.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>Shift_JIS
+===================================================================
+--- lib/UA.php	(revision c2a5fa8f6b851be72ac0b69f7fac006b0d347bb3)
++++ lib/UA.php	(date 1593576040414)
+@@ -364,7 +364,7 @@
+         if (!is_null($ua)) {
+             $nuam = Net_UserAgent_Mobile::factory($ua);
+         } else {
+-            $nuam = Net_UserAgent_Mobile::singleton();
++            $nuam = (new Net_UserAgent_Mobile)->singleton();
+         }
+ 
+         if (PEAR::isError($nuam)) {
+Index: lib/Login.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>Shift_JIS
+===================================================================
+--- lib/Login.php	(revision c2a5fa8f6b851be72ac0b69f7fac006b0d347bb3)
++++ lib/Login.php	(date 1593576040431)
+@@ -302,7 +302,7 @@
+ 
+         // }}}
+ 
+-        $mobile = Net_UserAgent_Mobile::singleton();
++        $mobile = (new Net_UserAgent_Mobile)->singleton();
+ 
+         // {{{ フォームからログインした時
+ 
+Index: lib/bootstrap.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>Shift_JIS
+===================================================================
+--- lib/bootstrap.php	(revision c2a5fa8f6b851be72ac0b69f7fac006b0d347bb3)
++++ lib/bootstrap.php	(date 1593575669378)
+@@ -4,6 +4,22 @@
+  * conf/conf.inc.php の p2_init() から読み込まれる。
+  */
+ 
++/**
++ * PHP 8.0.0で廃止された関数を呼び出す輩のためのパッチ
++ * HTTP_Request2
++ * Bug #23839 get_magic_quotes_runtime() is deprecated
++ * https://pear.php.net/bugs/bug.php?id=23839
++ **/
++if (version_compare(PHP_VERSION, '7') > 0) {
++    function set_magic_quotes_runtime($new_setting) {
++        throw new Exception('とうの昔に廃止されましたよ');
++    }
++
++    function get_magic_quotes_runtime() {
++        return false;
++    }
++}
++
+ p2_rewrite_vars_for_proxy();
+ 
+ // {{{ ユーザー設定 読込
+@@ -156,7 +172,7 @@
+ $_conf['use_cookies'] = true;
+ 
+ $userAgent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : null;
+-$mobile = Net_UserAgent_Mobile::singleton($userAgent);
++$mobile = (new Net_UserAgent_Mobile)->singleton($userAgent);
+ 
+ // iPhone, iPod Touch or Android
+ if (UA::isIPhoneGroup($userAgent)) {
+Index: rep2/info_sp.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>Shift_JIS
+===================================================================
+--- rep2/info_sp.php	(revision c2a5fa8f6b851be72ac0b69f7fac006b0d347bb3)
++++ rep2/info_sp.php	(date 1593575966456)
+@@ -109,7 +109,9 @@
+ 
+         if (file_exists($path) && ($data = FileCtl::file_read_lines($path))) {
+             $data = array_map('trim', $data);
+-            $data = array_filter($data, create_function('$v', 'return ($v !== "");'));
++            $data = array_filter($data, function ($v) {
++                return ($v !== "");
++            });
+             array_unshift($data, $aborn_str);
+             $data = array_unique($data);
+         } else {
