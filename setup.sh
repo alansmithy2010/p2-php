@@ -2,7 +2,7 @@
 DIR=$(cd $(dirname $0); pwd)
 cd $DIR
 
-curl -O http://getcomposer.org/composer.phar || exit 1
+curl -O https://getcomposer.org/download/1.10.8/composer.phar || exit 1
 chmod +x composer.phar || exit 1
 mv composer.phar /usr/local/bin/composer || exit 1
 
