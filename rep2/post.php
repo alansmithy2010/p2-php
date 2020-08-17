@@ -400,6 +400,7 @@ function postIt($host, $bbs, $key, $post)
 
         // ヘッダ
         $req->setHeader('Referer', "http://{$host}/{$bbs}/{$key}/");
+        $req->setHeader('User-Agent', "Monazilla/1.00 JaneStyle/4.00 Windows/10.0.18363");
 
         // クッキー
         if ($p2cookies) {
