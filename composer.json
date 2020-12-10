@@ -4,6 +4,10 @@
   "license": "X11",
   "repositories": [
     {
+      "type": "composer",
+      "url": "https://eventum.github.io/composer/"
+    },
+    {
       "type": "pear",
       "url": "https://pear.php.net"
     },

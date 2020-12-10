@@ -1,12 +1,10 @@
 #!/bin/bash -x
-DIR=$(cd $(dirname $0); pwd)
-cd $DIR
+cd `dirname $0`
 
-curl -O https://getcomposer.org/download/1.10.8/composer.phar || exit 1
+curl -O https://getcomposer.org/download/1.10.19/composer.phar || exit 1
 chmod +x composer.phar || exit 1
-mv composer.phar /usr/local/bin/composer || exit 1
 
-/usr/local/bin/composer install || exit 1
+./composer.phar install || exit 1
 
 chmod 0777 data/* rep2/ic || exit 1
 
