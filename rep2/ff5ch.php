@@ -25,7 +25,7 @@ function ff5ch_search($query)
         p2die($e->getMessage());
     }
 
-    // FIXME 多少の構造変化に耐えられるような正規表現へ修正
+    // FIXME �����̍\���ω��ɑς�����悤�Ȑ��K�\���֏C��
     $re = '/<li.*><a class="thread" href="(?P<thread_url>.+)">(?P<thread_name>.+)<\/a><span\s+?class="count"> \((?<thread_res_count>\d+)\)<\/span><br\/>\s*<a class="board" href="(?P<board_url>.+)">(?<board_name>.+)<\/a>\s*<span class="time">(?<created_at>.+)<\/span>\s*<\/li>/m';
 
     preg_match_all($re, $body, $threads, PREG_SET_ORDER);

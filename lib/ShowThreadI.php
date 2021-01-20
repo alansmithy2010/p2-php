@@ -391,7 +391,7 @@ EOP;
      */
     public function transName($name)
     {
-        $name = strip_tags($name);
+        $name = strtr($name, array('<b>' => '', '</b>' => '')); 
 
         // トリップやホスト付きなら分解する
         if (($pos = strpos($name, '◆')) !== false) {
