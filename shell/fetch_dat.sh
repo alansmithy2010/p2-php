@@ -1,6 +1,6 @@
 #!/bin/bash -x
-DIR=$(cd $(dirname $0); pwd)
-cd $DIR
+cd `dirname $0`
+cd ../
 
 php scripts/fetch-dat.php --mode fav
 php scripts/fetch-dat.php --mode recent

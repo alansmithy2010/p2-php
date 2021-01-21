@@ -1,5 +1,6 @@
 #!/bin/bash -x
 cd `dirname $0`
+cd ../
 
 curl -O https://getcomposer.org/download/1.10.19/composer.phar || exit 1
 chmod +x composer.phar || exit 1
