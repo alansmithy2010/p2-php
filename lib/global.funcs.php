@@ -275,12 +275,12 @@ if (!function_exists('http_date')) {
  * ctypeägí£ÉÇÉWÉÖÅ[Éãä÷êîÇÃPure PHPî≈ (cntrl,graph,print,punct,spaceÇÕäÑà§)
  */
 if (!extension_loaded('ctype')) {
-    function ctype_alnum($str) { return (bool)preg_match('/^[0-9A-Za-z]+$/', $str); }
-    function ctype_alpha($str) { return (bool)preg_match('/^[A-Za-z]+$/', $str); }
-    function ctype_digit($str) { return (bool)preg_match('/^[0-9]+$/', $str); }
-    function ctype_lower($str) { return (bool)preg_match('/^[a-z]+$/', $str); }
-    function ctype_upper($str) { return (bool)preg_match('/^[A-Z]+$/', $str); }
-    function ctype_xdigit($str) { return (bool)preg_match('/^[0-9A-Fa-f]+$/', $str); }
+    if (!function_exists ( 'ctype_alnum' )){ function ctype_alnum($str) { return (bool)preg_match('/^[0-9A-Za-z]+$/', $str); } }
+    if (!function_exists ( 'ctype_alpha' )){ function ctype_alpha($str) { return (bool)preg_match('/^[A-Za-z]+$/', $str); } }
+    if (!function_exists ( 'ctype_digit' )){ function ctype_digit($str) { return (bool)preg_match('/^[0-9]+$/', $str); } }
+    if (!function_exists ( 'ctype_lower' )){ function ctype_lower($str) { return (bool)preg_match('/^[a-z]+$/', $str); } }
+    if (!function_exists ( 'ctype_upper' )){ function ctype_upper($str) { return (bool)preg_match('/^[A-Z]+$/', $str); } }
+    if (!function_exists ( 'ctype_xdigit' )){ function ctype_xdigit($str) { return (bool)preg_match('/^[0-9A-Fa-f]+$/', $str); } }
 }
 
 // }}}
